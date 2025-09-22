@@ -5,8 +5,9 @@ body {
         align-items: center;
         height: 100vh;
         margin: 0;
-        font-family: Arial, sand-serif;
-        text-align: center    
+        font-family: Arial, sans-serif;
+        text-align: center;
+        transition: background-color 0.5s ease;    
         }
     
     h1 {
@@ -29,10 +30,43 @@ body {
         margin-top: 30px;
         overflow: hidden;
     }
-    
+
     .progress-fill {
         height: 100%;
         width: 0%;
         background: linear-gradient(90deg, #4f46e5, #22c55e);
         transition: width 0.4s ease;
     }
+
+    .rarity-wrap {
+        position: fixed;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        pointer-events: none;
+        z-index: 1000;
+    }
+
+    .rarity {
+        padding: 16px 24px;
+        border-radius: 12px;
+        background: rgba(0,0,0,0.7);
+        backdrop-filter: blur(4px);
+        text-align: center;
+        transform: translateY(-10px) scale(0.95);
+        opacity: 0;
+        transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .rarity.show {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+
+    .rarity_tier { font-size: 20px; font-weight: bold; margin-bottom: 6px; }
+    .rarity_name { font-size: 28px; font-weight: bold; }
+
+    .tier-common { color: #9ca3af; }
+    .tier-uncommon { color: #22c55e; }
+    .tier-rare { color: #60a5fa; }
+    .tier-legendary { color: #facc15; }

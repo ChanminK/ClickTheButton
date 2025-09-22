@@ -1,4 +1,4 @@
-Plan:
+PROJECT PLAN:
 
 #Regular Site with a plain button
 #Chance for stuff to happen the more you press it
@@ -6,33 +6,34 @@ Plan:
 
 100 Button presses to win
 Once you win a win sequence pops up
+Idk just a sign for now
 
 Events:
 1st(no matter what) - Do you know what you've started? + Vine Boom
     (Presses needed to win: 100) pops up
 
 Common: 50%
-Color Switch - background switches to a random color(gold 1%)
+Color Switch - background switches to a random color(do a random choose from the entire color list)
 Button Switch - button's position switches across the screen
-Text Scramble - all text on the screen scrambles into gibberish
-Emoji Rain - emojis start falling from the top of the screen and don't stop
-Shake effect - page shakes
+Text Scramble - all text on the screen scrambles into gibberish(2 min)
+Emoji Rain - emojis start falling from the top of the screen and don't stop(make sure it doesn't kill framerate + make it choose from a group of emojis/pics)
+Shake effect - page shakes(idk how much but do it for a minute)
 
 Uncommon: 10%
-Music Start - random song from a song list starts playing(Rick Astley 1%)
-Confetti Explosion - Confetti burts from the button + party popper sfx
-Duplicate Button - more buttons show up, only 1 is real(its like that every time now, button switch switches all of them)
-Cursed Cursor - cursor is now something random(ill get pngs)
-Invert Colors - colors on screen get inverted
+Music Start - random song from a song list starts playing(Get vocaloid, rickroll, etc. the song will play for its entirety and then stop unless another song gets chosen)
+Confetti Explosion - Confetti burts from the button + party popper and yay sfx (party popper confetti on the bottom of the screen for a minute before fasing away)
+Duplicate Button - more buttons show up, only 1 is real(its like that every time now, button posiiton also switches every times, when button posiiton switches, every button position switches)
+Cursed Cursor - cursor is now something random(ill get pngs, doesn't switch unless a new thing is chosen)
+Invert Colors - colors on screen get inverted(forever unless the event is chosen again, -1x switch should work)
 
 Rare: 5%
-Yt - Background turns into a yt video and starts playing
-Screensaver - A color filter is applied to the entire screen(red, blue, yellow, etc)
-180 spin - page turns upside down
-Matrix - entire screen turns matrix
-Messages-  weird messages like "he's watching", random ip addresses, etc start floating around
+Yt - Background turns into a yt video and starts playing(ill get a lsit of urls)
+Screensaver - A color filter is applied to the entire screen(red, blue, yellow, etc, choose randomly from the color list)
+180 spin - page turns upside down(and everything is like that )
+Matrix - entire screen turns matrix background(forever unless different event changes backgrounbd)
+Messages-  weird messages like "he's watching", random ip addresses, etc start floating around(from a list)
 
 LEGENDARY: 1%
 YOU WIN - You automatically win, no need to press the button anymore(do win sequence immediatly)
-CHAOS - EVERYTHING HAPPENS AT ONCE
+CHAOS - EVERYTHING HAPPENS AT ONCE(EVERY EVENT TRIGGERS)
 Self-Destruct - Page says goodbye then force reloads
