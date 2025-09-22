@@ -1,0 +1,38 @@
+Plan:
+
+#Regular Site with a plain button
+#Chance for stuff to happen the more you press it
+#Testing my HTML, JAVA, PYTHON
+
+100 Button presses to win
+Once you win a win sequence pops up
+
+Events:
+1st(no matter what) - Do you know what you've started? + Vine Boom
+    (Presses needed to win: 100) pops up
+
+Common: 50%
+Color Switch - background switches to a random color(gold 1%)
+Button Switch - button's position switches across the screen
+Text Scramble - all text on the screen scrambles into gibberish
+Emoji Rain - emojis start falling from the top of the screen and don't stop
+Shake effect - page shakes
+
+Uncommon: 10%
+Music Start - random song from a song list starts playing(Rick Astley 1%)
+Confetti Explosion - Confetti burts from the button + party popper sfx
+Duplicate Button - more buttons show up, only 1 is real(its like that every time now, button switch switches all of them)
+Cursed Cursor - cursor is now something random(ill get pngs)
+Invert Colors - colors on screen get inverted
+
+Rare: 5%
+Yt - Background turns into a yt video and starts playing
+Screensaver - A color filter is applied to the entire screen(red, blue, yellow, etc)
+180 spin - page turns upside down
+Matrix - entire screen turns matrix
+Messages-  weird messages like "he's watching", random ip addresses, etc start floating around
+
+LEGENDARY: 1%
+YOU WIN - You automatically win, no need to press the button anymore(do win sequence immediatly)
+CHAOS - EVERYTHING HAPPENS AT ONCE
+Self-Destruct - Page says goodbye then force reloads
