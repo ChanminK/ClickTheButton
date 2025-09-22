@@ -1,0 +1,55 @@
+<!--
+Plan
+
+#Regular Site with a plain button
+#More you press it more weird stuff happens
+#Testing my HTML, JAVA, PYTHON
+#Frontend + Backend
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Click The Button</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction:column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sand-serif;
+            text-align: center    
+            transition background-color 0.5s;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <hi>Welcome, please click the buton</hi>
+
+    <button onclick="buttonClciked()">Click</button>
+    
+    <script>
+        function changeColor(){
+            const colors = []
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.body.style.backgroundColor = randomcolor;
+        }
+
+        function buttonClciked() {
+            alert("Do you know what you've started?")
+        }
+    </script>
+
+</body>
+</html>
