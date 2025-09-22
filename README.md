@@ -1,6 +1,14 @@
 # ClickTheButton
 
-A <span style="color:red;">S</span><span style="color:orange;">i</span><span style="color:yellow;">e</span><span style="color:green;">g</span><span style="color:blue;">e</span> Game
+A 
+
+![S](https://img.shields.io/badge/S-red?style=for-the-badge)
+![i](https://img.shields.io/badge/i-orange?style=for-the-badge)
+![e](https://img.shields.io/badge/e-yellow?style=for-the-badge)
+![g](https://img.shields.io/badge/g-green?style=for-the-badge)
+![e](https://img.shields.io/badge/e-blue?style=for-the-badge)
+
+Game
 
 Click the button. I dare you.
 

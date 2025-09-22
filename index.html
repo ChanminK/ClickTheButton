@@ -1,87 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Click The Button</title>
-<style>
-    body {
-        display: flex;
-        flex-direction:column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        font-family: Arial, sand-serif;
-        text-align: center    
-        }
-    
-    h1 {
-        margin-bottom: 20px;
-    }
-
-    button {
-        padding: 15px 30px;
-        font-size: 18px;
-        cursor: pointer;
-        margin-top: 20px;
-    }
-
-    /* PROGRESS BAR */
-    .progress {
-        width: 80%;
-        height: 20px;
-        background-color: #eee;
-        border: 1px solid #aaa;
-        border-radius: 10px;
-        margin-top: 30px;
-        overflow: hidden;
-    }
-
-    .progress-fill {
-        height: 100%;
-        width: 0%;
-        background: linear-gradient(90deg, #4f46e5, #22c55e);
-        transition: width 0.4s ease;
-    }
-
-</style>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Click The Button</title>
+    <link rel="stylesheet" = href="style.css">
 </head>
-
 <body>
     <h1>Welcome, please click the buton</h1>
 
-    <button onclick="buttonClicked()">Click</button>
+    <button id="clickBtn">Click</button>
     
     <div class = "progress">
         <div id="progressFill" class="progress-fill"></div>
     </div>
 
-    <script>
-        let presses = 0;
-        const WIN_TARGET = 100;
-        const progressFill = document.getElementById("progressFill");
-
-        function buttonClicked() {
-            if (presses < WIN_TARGET) {
-                presses+=1;
-                updateProgess();
-            }
-
-        if (presses == 1) {
-            alert("Do you know what you've started?")
-        }
-
-        if (presses == WIN_TARGET) {
-            alert("YOU WIN!!!")
-        }
-    }
-
-    function updateProgess() {
-        const pct = (presses/WIN_TARGET) * 100;
-        progressFill.style.width = pct + "%";
-    }
-
-    </script>
+    <script src="script.js" defer></script>
 </body>
 </html>
