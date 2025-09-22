@@ -78,7 +78,8 @@ function updateProgress() {
 function rollEvent() {
     const rarities = Object.keys(EVENT_POOLS);
     const rarity = rarities[Math.floor(Math.random() * rarities.length)];
-    const name = EVENT_POOLS[rarity];
+    
+    const pool = EVENT_POOLS[rarity];
     const choice = pool[Math.floor(Math.random() * pool.length)];
 
     if (typeof choice === "function") {
