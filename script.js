@@ -1,6 +1,32 @@
 let presses = 0;
 const WIN_TARGET = 100;
 
+const WEIGHTS = {
+    legendary: 1,
+    rare: 5,
+    uncommon: 10,
+    common: 50
+};
+
+function pickRarityWeighted() {
+    const r = Math.random() * 100;
+    let acc = 0;
+
+    acc += WEIGHTS.legendary;
+    if (r < acc) return "legendary";
+
+    acc += WEIGHTS.rare;
+    if (r < acc) return "rare";
+
+    acc += WEIGHTS.uncommon;
+    if (r < acc) return "uncommon";
+
+    acc += WEIGHTS.common;
+    if (r < acc) return "common";
+
+    return null;
+}
+
 const CSS_COLORS = [
     "aliceblue","antiquewhite","aqua","aquamarine","azure","beige","bisque","black","blanchedalmond",
   "blue","blueviolet","brown","burlywood","cadetblue","chartreuse","chocolate","coral","cornflowerblue",
@@ -28,7 +54,7 @@ const rarityTierEl = document.getElementById("rarityTier");
 const rarityNameEl = document.getElementById("rarityName");
 
 const EVENT_POOLS = {
-    common: [evColorSwitch, "Button Switch", "Text Scramble", "Emoji Rain", "Shake effect"],
+    common: [evColorSwitch, buttonSwitch, txtScramble, "Emoji Rain", "Shake effect"],
     uncommon: ["Music Start", "Confetti Explosion", "Duplicate Button", "Cursed Cursor", "Invert Colors"],
     rare: ["Youtube Background", "Screensaver", "180 Spin", "Matrix", "Messages"],
     legendary: ["YOU WIN", "CHAOS", "Self-Destruct"]
@@ -46,6 +72,14 @@ function evColorSwitch() {
 
     document.body.style.backgroundColor = color;
     showRarity("common", `Color Switch (${color})`);
+}
+
+function buttonSwitch() {
+    
+}
+
+function txtScramble() {
+
 }
 
 function showRarity(rarity, name) {
@@ -76,8 +110,8 @@ function updateProgress() {
 }
 
 function rollEvent() {
-    const rarities = Object.keys(EVENT_POOLS);
-    const rarity = rarities[Math.floor(Math.random() * rarities.length)];
+    const rarity = pickRarityWeighted();
+    if (!rarity) return null;
     
     const pool = EVENT_POOLS[rarity];
     const choice = pool[Math.floor(Math.random() * pool.length)];
