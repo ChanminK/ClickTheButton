@@ -14,6 +14,13 @@ body {
         margin-bottom: 20px;
     }
 
+    .stack {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+
     button {
         padding: 15px 30px;
         font-size: 18px;
@@ -21,13 +28,29 @@ body {
         margin-top: 20px;
     }
 
+    button:disabled {
+        background-color: #777;
+        color: #eee;
+        cursor: not-allowed;
+        opacity: 0.9;
+    }
+
+    .btn {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        transition: left 0.25s ease, top 0.25s ease;
+    }
+
     .progress {
-        width: 80%;
-        height: 20px;
+        position: static;
+        width: min(900px, 92vw);
+        height: 22px;
+        margin-top: 8px;
         background-color: #eee;
         border: 1px solid #aaa;
         border-radius: 10px;
-        margin-top: 30px;
         overflow: hidden;
     }
 
@@ -70,3 +93,23 @@ body {
     .tier-uncommon { color: #22c55e; }
     .tier-rare { color: #60a5fa; }
     .tier-legendary { color: #facc15; }
+
+    .emoji-drop {
+        position: fixed;
+        top: -80px;
+        left: 0;
+        width: 40px;
+        height: 40px;
+        pointer-events: none;
+        user-select: none;
+        z-index: 900;
+        will-change: transform, opacity;
+        animation-name: emoji-fall;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+    }
+    
+    @keyframes emoji-fall {
+        0% { transform: translateY(0) rotate(0deg); opacity:1;}
+        100% {transfomr: translateY (110vh) rotate(360deg); opacity: 0.85;}
+    }
