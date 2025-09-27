@@ -61,6 +61,39 @@ body {
         transition: width 0.4s ease;
     }
 
+    .destruct-box {
+        position: fixed;
+        right: 16px;
+        bottom: 16px;
+        padding: 10px 14px;
+        background: rgba(0,0,0,0.75);
+        color: #fff;
+        font-weight: 700;
+        border-radius: 10px;
+        z-index: 1400;
+        backdrop-filter: blur(3px);
+    }
+
+    .self-destruct-overlay {
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(rgba(255,0,0,0.15), rgba(0,0,0,0.92));
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-size: clamp(28px, 6vw, 64px);
+        font-weight: 900;
+        letter-spacing: 0.06em;
+        z-index: 2000;
+        animation: boom 1.1s ease both;
+    }
+
+    @keyframes boom {
+        0% { opacity: 0; transform: scale(0.98);}
+        40% { opacity: 1; transform: scale(1.02);}
+        100% { opacity: 1; transform: scale(1);}
+    }
+
     .rarity-wrap {
         position: fixed;
         inset: 0;
@@ -112,4 +145,53 @@ body {
     @keyframes emoji-fall {
         0% { transform: translateY(0) rotate(0deg); opacity:1;}
         100% {transfomr: translateY (110vh) rotate(360deg); opacity: 0.85;}
+    }
+
+    @keyframes reenable-flash {
+        0% { background-color: #4f46e5; color: #fff; }
+        50% { background-color: #22c55e; color: #fff; }
+        100% { background-color: #4f46e5; color: #fff; }
+    }
+
+    .btn.flash {
+        animation: reenable-flash 1s ease;
+    }
+
+    .quake-shake {
+        animation: quake-shake 0.6s linear infinite;
+    }
+
+    @keyframes quake-shake {
+        0% { transform: translate(0, 0) ratate(0deg); }
+        10% { transform: translate(-4px, -2px) ratate(-0.5deg); }
+        20% { transform: translate(3px, 3px) ratate(0.4deg); }
+        30% { transform: translate(-2px, 4px) ratate(0.2deg); }
+        40% { transform: translate(5px, -3px) ratate(-0.6deg); }
+        50% { transform: translate(-3px, 2px) ratate(0.3deg); }
+        60% { transform: translate(4px, -4px) ratate(-0.4deg); }
+        70% { transform: translate(-5px, 1px) ratate(0.5deg); }
+        80% { transform: translate(2px, -3px) ratate(-0.2deg); }
+        90% { transform: translate(-1px, 5px) ratate(0.2deg); }
+        100% { transform: translate(0, 0) ratate(0deg); }
+    }
+
+    .quake-bubble {
+        position: fixed;
+        left: 0; top: 0;
+        padding: 8px 12px;
+        background: rgba(0,0,0,0.75);
+        color: #fff;
+        border-radius: 12px;
+        font-weight: 800;
+        letter-spacing: .02em;
+        pointer-events: none;
+        z-index: 1500;
+        animation: quake-bibble 1.2s ease-out forwards;
+        will-change: transform, opacityl
+    }
+
+    @keyframes quake-bubble {
+        0% { transform: translate Y(0) scale(0.92); opacity: 0;}
+        10% {opacity: 1; }
+        100% { transform: translateY(-60px) scale(1.08); opacity: 0; }
     }
