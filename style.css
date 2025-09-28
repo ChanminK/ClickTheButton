@@ -18,7 +18,7 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 24px;
+        gap: 28px;
     }
 
     button {
@@ -47,7 +47,7 @@ body {
         position: static;
         width: min(900px, 92vw);
         height: 22px;
-        margin-top: 8px;
+        margin-top: 6px;
         background-color: #eee;
         border: 1px solid #aaa;
         border-radius: 10px;
@@ -195,3 +195,58 @@ body {
         10% {opacity: 1; }
         100% { transform: translateY(-60px) scale(1.08); opacity: 0; }
     }
+
+    .now-playing-toast {
+        position: fixed;
+        right: 16px;
+        bottom: 72px;
+        padding: 10px 14px;
+        background: rgba(0, 0, 0, 0.78);
+        color: #ffff;
+        font-weight: 700;
+        border-radius: 10px;
+        opacity: 0;
+        transform: translateY(6px);
+        transition: opacity .25s ease, transform .25s ease;
+        z-index: 1600;
+        pointer-events: none;
+    }
+
+    .now-playing-toast.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .confetti-piece {
+        position: fixed;
+        width: 8px;
+        height: 14px;
+        border-radius: 2px;
+        will-change: transform, opacity;
+        pointer-events: none;
+        z-index: 1400;
+        animation: confetti-fly var(--dur, 1200ms) cubic-bezier(.25, .7, .2, 1) forwards;
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.95;
+    }
+
+    @keyframes confetti-fly {
+        0% { transform: translate(0,0) rotate(0deg); opacity: 1;}
+        60% { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)); opacity: 1;}
+        100% { transform: translate(calc(var(--dx) * 1.15), calc(var(--dy) + 40px)) rotate(calc(var(--rot) * 1.15)); opacity: 0; }
+    }
+
+    .floor-confetti {
+        position: fixed;
+        bottom: 8px;
+        width: 8px;
+        height: 14px;
+        border-radius: 2px;
+        transform: rotate(var(--r, 0deg));
+        opacity: 0.95;
+        pointer-events: none;
+        z-index: 800;
+        transition: opacity .8s ease; 
+    }
+
+    .floor-confetti.fade-out { opacity: 0;}

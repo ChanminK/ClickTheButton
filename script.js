@@ -8,6 +8,7 @@ const WEIGHTS = {
     common: 50
 };
 
+// GENERAL FUNCTIONS
 function pickRarityWeighted() {
     const total = WEIGHTS.legendary + WEIGHTS.rare + WEIGHTS.uncommon + WEIGHTS.common;
     const r = Math.random() * total;
@@ -38,12 +39,11 @@ const rarityNameEl = document.getElementById("rarityName");
 
 const EVENT_POOLS = {
     common: [colorSwitch, buttonSwitch, txtScramble, emojiRain, cameraShake],
-    uncommon: ["Music Start", "Confetti Explosion", "Duplicate Button", "Cursed Cursor", "Invert Colors"],
+    uncommon: [musicStart, confettiExplosion, multiButtons, randomCursor, invertColor],
     rare: ["Youtube Background", "Screensaver", "180 Spin", "Matrix", "Messages"],
     legendary: ["YOU WIN", "CHAOS", "Self-Destruct"]
 };
 
-// GENERAL FUNCTIONS
 function showRarity(rarity, name) {
     rarityTierEl.className = "rarity_tier";
     rarityCard.classList.remove("show");

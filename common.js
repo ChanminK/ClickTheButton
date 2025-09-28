@@ -19,11 +19,11 @@ const CSS_COLORS = [
 ];
 
 const EMOJI_ASSETS = [
-    "assets/emoji1.jfif",
-    "assets/emoji2.jfif",
-    "assets/emoji3.jfif",
-    "assets/emoji4.gif",
-    "assets/emoji5.jfif",
+    "assets/emoji1.png",
+    "assets/emoji2.png",
+    "assets/emoji3.png",
+    "assets/emoji4.png",
+    "assets/emoji5.png",
 ]
 
 let emojiRainActive = false;
@@ -139,7 +139,7 @@ function spawnEmojiDrop() {
     img.style.left = left + "px";
 
     const dur = randInt(7000, 13000);
-    img.style.animationDuration = dur + "ms";
+    img.style.animation = `emoji-fall ${dur}ms linear forwards`;
 
     const spinDir = Math.random() < 0.5 ? -1 : 1;
 
@@ -176,7 +176,7 @@ function cameraShake() {
     ];
 
     let running = true;
-    const spawnEveryMs = 22;
+    const spawnEveryMs = 350;
     const spawner = setInterval(() => {
         if (!running) return;
         spawnQuakeBubble(messages[randInt(0, messages.length - 1)]);
@@ -195,6 +195,8 @@ function cameraShake() {
         b.style.top = y + "px";
 
         b.style.fontSize = big ? "28px" : randInt(14, 20) + "px";
+
+        b.style.animationDuration = "10s";
 
         document.body.appendChild(b);
         b.addEventListener("animationend", () => b.remove(), { once: true });
