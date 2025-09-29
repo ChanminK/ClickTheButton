@@ -41,6 +41,9 @@ function colorSwitch() {
     }
     _lastColor = color;
 
+    const yt = document.querySelectr(".yt-bg");
+    if (yt) yt.remove();
+
     document.body.style.backgroundColor = color;
     showRarity("common", `Color Switch (${color})`);
 }
@@ -58,7 +61,11 @@ function placeRandom(el, margin = 20) {
 function buttonSwitch() {
     const buttons = document.querySelectorAll(".btn");
     buttons.forEach(b => placeRandom(b));
-    showRarity("common", "Button Switch")
+    showRarity("common", "Button Teleport")
+
+    if (window._multiButtons?.active) {
+        reassignRandomReal();
+    }
 }
 
 function txtScramble() {

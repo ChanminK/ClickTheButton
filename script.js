@@ -40,8 +40,8 @@ const rarityNameEl = document.getElementById("rarityName");
 const EVENT_POOLS = {
     common: [colorSwitch, buttonSwitch, txtScramble, emojiRain, cameraShake],
     uncommon: [musicStart, confettiExplosion, multiButtons, randomCursor, invertColor],
-    rare: ["Youtube Background", "Screensaver", "180 Spin", "Matrix", "Messages"],
-    legendary: ["YOU WIN", "CHAOS", "Self-Destruct"]
+    rare: [ytBackground, screenSaver, flipScreen, matrix, msg],
+    legendary: [win, chaos, selfDestruct]
 };
 
 function showRarity(rarity, name) {

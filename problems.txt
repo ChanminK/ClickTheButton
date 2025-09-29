@@ -1,0 +1,4 @@
+CURRENT PROBLEMS:
+emoji rain is not working for some reason
+
+cehck back with project.txt if time to make it better

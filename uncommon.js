@@ -7,6 +7,14 @@ const MUSIC_TRACKS = [
     { src: "assets/music/song5.mp3", title: "BANG BANG BANG"},
 ];
 
+const PNGS = [
+    { src: "assets/cursor1", title: "rock"},
+    { src: "assets/cursor2", title: "cheese"},
+    { src: "assets/cursor3", title: "amognus"},
+    { src: "assets/cursor4", title: "dorito"},
+    { src: "assets/cursor5", title: "sus"},
+];
+
 let currentAudio = null;
 
 function showNowPlaying(title) {
@@ -28,7 +36,7 @@ function musicStart() {
         currentAudio = null;
     }
 
-    const pick = MUSIC_TRAKCS[Math.floor(Math.random() * MUSIC_TRACKS.length)];
+    const pick = MUSIC_TRACKS[Math.floor(Math.random() * MUSIC_TRACKS.length)];
     const audio = new Audio(pick.src);
     audio.loop = false;
     audio.volume = 1.0;
@@ -84,7 +92,7 @@ function spawnFlyingConfetti(x, y) {
     piece.style.top = `${y}px`;
 
     document.body.appendChild(piece);
-    piece.addEventListener("animationed", () => piece.remove(), { once: true});
+    piece.addEventListener("animationend", () => piece.remove(), { once: true});
 }
 
 function spawnFloorConfettiLayer(durationMs = 60_000) {
@@ -107,7 +115,7 @@ function spawnFloorConfettiLayer(durationMs = 60_000) {
     setTimeout(() => {
         floorPieces.forEach(el => el.classList.add("fade-out"));
         setTimeout(() => floorPieces.forEach(el => el.remove()), 850)
-    }, durationMS);
+    }, durationMs);
 }
 
 function confettiExplosion() {
@@ -117,6 +125,8 @@ function confettiExplosion() {
     setTimeout(() => playOnce(YAY_SFX, 0.9), 120);
 
     const btn = document.getElementById("clickBtn");
+    if (!btn) return;
+
     const r = btn.getBoundingClientRect();
     const originX = r.left + r.width /2;
     const originY = r.top + r.height /2;
@@ -125,22 +135,140 @@ function confettiExplosion() {
     const PER_WAVE = 36;
     for (let w = 0; w < BURST_WAVES; w++) {
         setTimeout(() => {
-            for (let i = 0; i < PER_WAVE; i++) spawnFloorConfetti(originX, originY);
+            for (let i = 0; i < PER_WAVE; i++) spawnFlyingConfetti(originX, originY);
         }, w * 90);
     }
 
     spawnFloorConfettiLayer(60_000);
 }
 
-
-function multiButtons() {
-    
+window._multiButtons = {
+    active: false,
+    targetTotal: 4,
+    decoyClass: `btn-decoy`,
+    realAttr: `data-real`,
 }
 
-function randomCursor() {
+function showTryAgainToast(msg = "try again~") {
+    const t = document.createElement('div');
+    t.className = 'now-playing-toast';
+    t.textContent = msg;
+    document.body.appendChild(t);
+    requestAnimationFrame(() => t.classList.add('show'));
+    setTimeout(() => t.classList.remove('show'), 900);
+    setTimeout(() => t.remove(), 1200);
+}
+
+function createDecoyButton() {
+    const base = document.getElementById('clickBtn');
+    if (!base) return null;
+
+    const decoy = base.cloneNode(true);
+    decoy.id = `decoy_${Date.now()}_${(Math.random()*1e5|0)}`;
+    decoy.classList.add(window._multiButtons.decoyClass);
+    decoy.setAttribute(window._multiButtons.realAttr, 'false');
+
+    decoy.style.position = 'fixed';
+    decoy.style.left = '-9999px';
+    decoy.style.top = '-9999px';
+
+    decoy.disabled = false;
+
+    document.body.appendChild(decoy);
+    return decoy;
+}
+
+function makeReal(btnEl) {
+    const realAttr = window._multiButtons.realAttr;
+    document.querySelectorAll('.btn').forEach(b => {
+        b.setAttribute(realAttr, 'false');
+        b.onclick = null;
+        b.addEventListener('click', onFakeClick, { passive: true });
+    });
+
+    btnEl.setAttribute(realAttr, 'true');
+    btnEl.onclick = null;
+    btnEl.removeEventListener('click', onFakeClick);
+
+    const original = document.getElementById('clickBtn');
+    btnEl.addEventListener('click', (e) => {
+        if (btnEl !== original) {
+            original.click();
+        }
+    }, { passive: true });
+}
+
+function onFakeClick(e) {
+    const isReal = e.currentTarget.getAttribute(window._multiButtons.realAttr) === 'true';
+    if (!isReal) showTryAgainToast("try again~");
+}
+
+function reassignRandomReal() {
+    const buttons = Array.from(document.querySelectorAll('.btn'));
+    if (!buttons.length) return;
+    const pick = buttons[(Math.random() * buttons.length)|0];
+    makeReal(pick);
+}
+
+function scatterAllButtons() {
+    const buttons = document.querySelectorAll('.btn');
+    buttons.forEach(b => placeRandom(b));
+}
+
+function multiButtons(total = 4) {
+    window._multiButtons.active = true;
+    window._multiButtons.targetTotal = Math.max(2, total);
+
+    const original = document.getElementById('clickBtn');
+    if (!original) return;
+
+    original.classList.add('btn');
+    if (!/absolute|fixed/i.test(getComputedStyle(original).position)) {
+        original.style.position = 'fixed';
+    }
+
+    const exisitng = document.querySelectorAll('.btn').length;
+    const needed = window._multiButtons.targetTotal - existing;
     
+    for (let i=0; i < needed; i++) {
+        const decoy = createDecoyButton();
+        if (decoy) decoy.classList.add('btn');
+    }
+
+    scatterAllButtons();
+    reassignRandomReal();
+}
+
+window.multiButtons = multiButtons;
+
+function randomCursor(duration = 6000, interval = 500) {
+    const original = document.body.style.cursor;
+
+    let timer = setInterval(() => {
+        const pick = PNGS[(Math.random() * PNGS.length) | 0];
+        document.body.style.cursor = `url(${pick.src}), auto`
+    }, interval);
+
+    setTimeout(() => {
+        clearInterval(timer);
+        document.body.style.cursor = original || "auto";
+    }, duration);
+
+    showRarity("uncommon", "Random Cursor")
 }
 
 function invertColor() {
-    
+    const root = document.documentElement;
+    const ON = 'invert-on';
+
+    if (root.classList.contains(ON)) {
+        root.classList.remove(ON);
+        root.style.filter = '';
+        showRarity("uncommon", "InvertColors: OFF");
+    } else {
+        root.classList.add(ON);
+        root.style.filter = "invert(1) hue-rotate(180deg)";
+        showRarirty("uncommon", "Invert Colors: ON");
+    }
 }
+

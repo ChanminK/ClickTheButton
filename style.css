@@ -37,6 +37,9 @@ body {
 
     .btn {
         position: fixed;
+        cursor: pointer;
+        user-select: none;
+        z-index: 1200;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
@@ -144,7 +147,7 @@ body {
     
     @keyframes emoji-fall {
         0% { transform: translateY(0) rotate(0deg); opacity:1;}
-        100% {transfomr: translateY (110vh) rotate(360deg); opacity: 0.85;}
+        100% {transform: translateY(110vh) rotate(360deg); opacity: 0.85;}
     }
 
     @keyframes reenable-flash {
@@ -162,17 +165,17 @@ body {
     }
 
     @keyframes quake-shake {
-        0% { transform: translate(0, 0) ratate(0deg); }
-        10% { transform: translate(-4px, -2px) ratate(-0.5deg); }
-        20% { transform: translate(3px, 3px) ratate(0.4deg); }
-        30% { transform: translate(-2px, 4px) ratate(0.2deg); }
-        40% { transform: translate(5px, -3px) ratate(-0.6deg); }
-        50% { transform: translate(-3px, 2px) ratate(0.3deg); }
-        60% { transform: translate(4px, -4px) ratate(-0.4deg); }
-        70% { transform: translate(-5px, 1px) ratate(0.5deg); }
-        80% { transform: translate(2px, -3px) ratate(-0.2deg); }
-        90% { transform: translate(-1px, 5px) ratate(0.2deg); }
-        100% { transform: translate(0, 0) ratate(0deg); }
+        0% { transform: translate(0, 0) rotate(0deg); }
+        10% { transform: translate(-4px, -2px) rotate(-0.5deg); }
+        20% { transform: translate(3px, 3px) rotate(0.4deg); }
+        30% { transform: translate(-2px, 4px) rotate(0.2deg); }
+        40% { transform: translate(5px, -3px) rotate(-0.6deg); }
+        50% { transform: translate(-3px, 2px) rotate(0.3deg); }
+        60% { transform: translate(4px, -4px) rotate(-0.4deg); }
+        70% { transform: translate(-5px, 1px) rotate(0.5deg); }
+        80% { transform: translate(2px, -3px) rotate(-0.2deg); }
+        90% { transform: translate(-1px, 5px) rotate(0.2deg); }
+        100% { transform: translate(0, 0) rotate(0deg); }
     }
 
     .quake-bubble {
@@ -186,27 +189,27 @@ body {
         letter-spacing: .02em;
         pointer-events: none;
         z-index: 1500;
-        animation: quake-bibble 1.2s ease-out forwards;
-        will-change: transform, opacityl
+        animation: quake-bubble 1.2s ease-out forwards;
+        will-change: transform, opacity
     }
 
     @keyframes quake-bubble {
-        0% { transform: translate Y(0) scale(0.92); opacity: 0;}
+        0% { transform: translateY(0) scale(0.92); opacity: 0;}
         10% {opacity: 1; }
         100% { transform: translateY(-60px) scale(1.08); opacity: 0; }
     }
 
     .now-playing-toast {
         position: fixed;
-        right: 16px;
+        left: 50%;
         bottom: 72px;
         padding: 10px 14px;
-        background: rgba(0, 0, 0, 0.78);
-        color: #ffff;
+        background: #111;
+        color: #fff;
         font-weight: 700;
         border-radius: 10px;
         opacity: 0;
-        transform: translateY(6px);
+        transform: translateX(-50%) translateY(6px);
         transition: opacity .25s ease, transform .25s ease;
         z-index: 1600;
         pointer-events: none;
@@ -214,7 +217,7 @@ body {
 
     .now-playing-toast.show {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateX(-50%) translateY(0);
     }
 
     .confetti-piece {
@@ -250,3 +253,12 @@ body {
     }
 
     .floor-confetti.fade-out { opacity: 0;}
+
+    .yt-bg {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+    }

@@ -11,6 +11,18 @@ Idk just a sign for now
 Events:
 1st(no matter what) - Do you know what you've started? + Vine Boom
     (Presses needed to win: 100) pops up
+    ok but as current, you need to beon the site for 17 minutes.
+    10 sec puase each time kinda iffy
+
+    change to 3 sec pause from 1-30, 5 sec pause from 31-70, 71-100 10 sec pause
+    destruction timer appears at 31 and starts at 20
+    but now 10 min...
+
+    figure it out later idk
+
+    also downtime between presses, maybe something to make it morei nteresintg?
+    idk like a chat thingy
+
 
 Common: 50%
 Color Switch - background switches to a random color(do a random choose from the entire color list)
