@@ -262,3 +262,38 @@ body {
         z-index: -1;
         pointer-events: none;
     }
+
+    .screensaver-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 1100;
+        pointer-events: none;
+        mix-blend-mode: var(--ss-blen, multiply);
+        opacity: var(--ss-alpha, 0.35);
+        transition: opacity .25s ease;
+    }
+
+    .typed-msg {
+        position: fixed;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        pointer-events: none;
+        z-index: 1500;
+        color: #fff;
+        text-align: center;
+        line-height: 1.1;
+        font-weight: 900;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.35), 0 0 2px rgba(0,0,0,0.5);
+        opacity: 1;
+        transition: opacity 1s ease;
+    }
+
+    .typed-msg.fade-out { opacity: 0;}
+
+    .typed-msg-content {
+        font-size: clamp(28px, 8vw, 96px);
+        letter-spacing: 0.02em;
+        word-break: break-word
+    }

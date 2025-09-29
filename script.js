@@ -8,6 +8,12 @@ const WEIGHTS = {
     common: 50
 };
 
+function getCooldownForPresses(p) {
+    if (p <= 30) return 3;
+    if (p <= 70) return 5;
+    return 10;
+}
+
 // GENERAL FUNCTIONS
 function pickRarityWeighted() {
     const total = WEIGHTS.legendary + WEIGHTS.rare + WEIGHTS.uncommon + WEIGHTS.common;
@@ -93,8 +99,16 @@ btn.addEventListener("click", () => {
         addDestructTime(DESTRUCT_ADD_ON_CLICK);
     }
 
-    if (!destructStarted) {
+    if (destructStarted) {
+        addDestructTime(DESTRUCT_ADD_ON_CLICK);
+    }
+
+    if (!destructStarted && presses >= 31) {
         destructStarted = true;
+        destructBox.style.display = "block";
+        destructRemaining = 20;
+        destructTimeEl.textContent = destructRemaining;
+
         destructInterval = setInterval(() => {
             destructRemaining = Math.max(0, destructRemaining -1);
             destructTimeEl.textContent = destructRemaining;
@@ -122,7 +136,7 @@ btn.addEventListener("click", () => {
         alert("YOU WIN!!!");
     }
 
-    const COOLDOWN_SEC = 10;
+    const COOLDOWN_SEC = getCooldownForPresses(presses);
     btn.disabled = true;
     
     const originalLabel = btn.textContent;
@@ -146,9 +160,12 @@ btn.addEventListener("click", () => {
     }, 1000);
 });
 
-
+const destructBox = document.getElementById("destructBox");
 const destructTimeEl = document.getElementById("destructTime");
-let destructRemaining = 30;
+
+destructBox.style.display = "none";
+
+let destructRemaining = 20;
 const DESTRUCT_ADD_ON_CLICK = 20;
 let destructInterval = null;
 let destructStarted = false;
