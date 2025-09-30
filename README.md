@@ -11,7 +11,12 @@ A
 Game
 
 Click the button. I dare you.
+You're a chill guy, but you get a letter asking you to, well, click a button.
+100 times.
+See what happens!
+Maybe theres a special prize at the end...
 
+Kinda inspired by neal.fun and other similar sites
 __________________________________________________________________________
 DEMO:
 ![Demo](assets/demovid.gif)
