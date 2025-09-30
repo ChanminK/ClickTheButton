@@ -4,7 +4,7 @@ function win() {
 
     showRarity("legendary", "YOU WIN");
 
-    alert("YOU WIN!!!");
+    if (typeof showOutroWin === "function") showOutroWin();
 }
 
 let _chaosRunning = false;
@@ -104,39 +104,35 @@ function calmDown() {
 let _selfDestructRunning = false;
 
 function selfDestruct(countdown = 10) {
-        if(_selfDestructRunning) return;
+    if(_selfDestructRunning) return;
     _selfDestructRunning = true;
 
     showRarity("legendary", "SELF DESTRUCT");
 
-    const overlay = document.createElement("div");
-    overlay.className = "self-destruct-overlay";
-    overlay.dataset.noscramble = "true";
-    overlay.innerHTML = `
-        <div style="text-align:center">
-        <div style="font-size:0.6em; opacity:.9; margin-bottom:.25em;">WARNING</div>
-        PROGRESS LOST IN <span id="sdCountdown">${countdown}</span>s
-        </div>
-    `;
-    document.body.appendChild(overlay);
+    const overlay = document.getElementById("selfDestructOverlay");
+    const counter = document.getElementById("sdCountdown");
+
+    overlay.style.display = "grid";
+    counter.textContent = countdown;
 
     const btn = document.getElementById("clickBtn");
     const prevDisabled = btn?.disabled;
     if (btn) btn.disabled = true;
 
     let remaining = countdown;
-    const tick = setINterval(() => {
+    const tick = setInterval(() => {
         remaining -= 1;
-        const span = document.getElementById("sdCountdown");
-        if(span) span.textContent = remaining;
+        counter.textContent = remaining;
 
         if (remaining <= 0) {
             clearInterval(tick);
-            location.reload();
+            if (typeof showOutroLoss === "funciton") {
+                showOutroLoss();
+            } else {
+                location.reload(); 
+            }
         }
     }, 1000);
-
-    overlay.addEventListener("remove", () => clearInterval(tick), { once: true});
 
     window.addEventListener("beforeunload", () => {
         if (btn) btn.disabled = prevDisabled ?? false;

@@ -13,7 +13,10 @@ Game
 Click the button. I dare you.
 
 __________________________________________________________________________
-A very (*bad*) web project I made for Siege! In like two hours...
+DEMO:
+![Demo](assets.demovid.gif)
+__________________________________________________________________________
+A very (*bad*) web project I made for Siege! In like 12 hours...
 
 Getting back into web dev because I haven't coded anything in like a 
 <u> MONTH </u>

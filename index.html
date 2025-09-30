@@ -7,6 +7,37 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <div id = "sceneLayer"class = "scene-layer" data-noscramble="true" style ="display:none;">
+        <div id = "sceneIntro" class="scene screen" style = "display: none;">
+            <div id = "introText" class="type-block"></div>
+            <div id="introHint" class="press-hint" style="display:none;">Press Enter</div>
+            <audio id="sfxMail" src="assets/sfx/you_got_mail.mp3" preload="auto"></audio>
+        </div>
+
+        <div id="sceneTable" class="scene screen" style="display:none">
+            <div class="table-bg">
+                <button id="letterHotspot" class="letter-hotspot" aria-label="Open letter"></button>
+            </div>
+        </div>
+
+        <div id="letterModal" class="letter-modal" style="display:none;">
+            <div class="letter-card">
+                <div id="letterText" class="letter-text">LETTER CONTENT</div>
+                <div class="letter-actions">
+                    <button id="letterOk" class="letter-btn">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="selfDestructOverlay" class="self-destruct-overlay" style="display:none;" data-noscramble="true">
+        <div style="text-align:center">
+            <div class="Self-destruct-warning">WARNING</div>
+            PROGRESS LOST IN <span id="sdCountdown">10</span>s
+        </div>
+    </div>
+
     <main id="stack" class="stack">
         <h1 id="title">Welcome, please click the buton</h1>
 
@@ -32,6 +63,7 @@
     <script src="uncommon.js" defer></script>
     <script src="rare.js" defer></script>
     <script src="legendary.js" defer></script>
+    <script src="scenes.js" defer></script>
     <script src="script.js" defer></script>
 </body>
 </html>

@@ -4,6 +4,35 @@ PROJECT PLAN:
 #Chance for stuff to happen the more you press it
 #Testing my HTML, JAVA, PYTHON
 
+intro:
+smth similar to there is no game
+maybe intro text explaining the situation or smth
+include lore relevant to the win and loss scenarios?
+
+background is a table
+You got mail:
+(notification pops ups, you have to press it to get a black text box with whtie text with this:)
+YOU MUST PRESS THIS BUTTON 100 TIMES... OR ELSE
+Ok button and then you get put into the start scene
+
+exit(win):
+Clear current scene
+back to table
+Another letter 
+Great job on pressing that button, hope it didn't cause any problems
+Here's your money:
+Button to press to get money appears 
+If you press it you get rickrolled
+
+exit(loss);
+clear current scene
+back to table
+Another letter
+Why did you fail? Now you can't get any money :/
+Well I guess I can give you this
+Button appears saying consolation prize
+When you press it you get rickrolled
+
 100 Button presses to win
 Once you win a win sequence pops up
 Idk just a sign for now

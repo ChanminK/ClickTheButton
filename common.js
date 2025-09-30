@@ -41,7 +41,7 @@ function colorSwitch() {
     }
     _lastColor = color;
 
-    const yt = document.querySelectr(".yt-bg");
+    const yt = document.querySelector(".yt-bg");
     if (yt) yt.remove();
 
     document.body.style.backgroundColor = color;

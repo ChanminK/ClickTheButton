@@ -24,7 +24,7 @@ function ytBackground() {
 
     document.body.appendChild(iframe);
 
-    showRarity?.("rare", "Youtube Background");
+    showRarity("rare", "Youtube Background");
 }
 
 function screenSaver(strength = 0.35, blend = 'multiply') {
@@ -37,7 +37,7 @@ function screenSaver(strength = 0.35, blend = 'multiply') {
     overlay.style.setProperty('--ss-blend', blend);
 
     document.body.appendChild(overlay);
-    showRarity?.("rare",   `Screensaver (${color})`);
+    showRarity("rare",   `Screensaver (${color})`);
 }
 
 function clearScreenSaver() {
@@ -58,8 +58,74 @@ function flipScreen(duration = 60000) {
 
 }
 
-function matrix() {
-    // matrix - okay i think i should change this to soemthing else
+let _inverseActive = false;
+
+function inverse(duration = 10000) {
+    if (_inverseActive) return;
+    _inverseActive = true;
+
+    showRarity("rare", "Inverse Cursor");
+
+    const fake = document.createElement("div");
+    fake.className = "inverse-cursor";
+    document.body.appendChild(fake);
+
+    const prevCursor = document.body.style.cursor;
+    document.body.style.cursor = "none";
+
+    const getInv = (e) => ({
+        x: Math.max(0, Math.min(window.innerWidth  - 1, window.innerWidth  - e.clientX)),
+        y: Math.max(0, Math.min(window.innerHeight - 1, window.innerHeight - e.clientY)),
+    });
+
+    const onMove = (e) => {
+        const { x, y} = getInv(e);
+        fake.style.transform = `translate(${x}px, ${y}px)`;
+    };
+
+    const forward = (type) => (e) => {
+        const { x, y } = getInv(e);
+
+        const target = document.elementFromPoint(x, y);
+        if(!target) return;
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        const evt = new MouseEvent(type, {
+            bubbles: true,
+            cancelable: true,
+            clinetX: x,
+            clientY: y,
+            screenX: x,
+            ScreenY: y,
+            button: e.buttion,
+            buttons: e.buttons,
+            ctrlKey: e.ctrlKey,
+            shiftKey: e.shiftKey,
+            altKey: e.altKey,
+            metaKey: e.metaKey,
+        });
+
+        target.dispatchEvent(evt);
+    };
+
+    window.addEventListener("movemove", onMove, true);
+    window.addEventListener("mousedown", forward("mousedown"), true);
+    window.addEventListener("mouseup", forward("mouseup"), true);
+    window.addEventListener("click", forward("click"), true);
+
+    const cleanup = () => {
+        window.addEventListener("mousemove", onMove, true);
+        window.addEventListener("mousedown", forward("mousedown"), true);
+        window.addEventListener("mouseup", forward("mouseup"), true);
+        window.addEventListener("click", forward("click"), true);
+        document.body.style.cursor = prevCursor || "auto";
+        fake.remove();
+        _inverseActive = false;
+    };
+
+    setTimeout(cleanup, duration);
 }
 
 const MSG = [

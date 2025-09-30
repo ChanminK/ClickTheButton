@@ -1,7 +1,8 @@
 CURRENT PROBLEMS:
-emoji rain is not working for some reason
 
 chck back with project.txt if time to make it better
 
 determine the lengths of certain events
 whether they infinite or not 
+
+when invert colors, the event colors stay the same so you cant read them
