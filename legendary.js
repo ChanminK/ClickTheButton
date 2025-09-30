@@ -14,7 +14,7 @@ function chaos() {
     _chaosRunning = true;
     showRarity("legendary", "CHAOS!");
 
-    const tryCall = (fn, ...arge) => {
+    const tryCall = (fn, ...args) => {
         try {
             if (typeof fn === "function") fn(...args);
         } catch (e) {
@@ -84,7 +84,7 @@ function calmDown() {
 
     try {
         document.querySelectorAll(`.btn[id^="decoy_"], .btn[data-real="false"]`).forEach(el => {
-            if(el.if !== "clickBtn") el.remove();
+            if(el.id !== "clickBtn") el.remove();
         });
 
         const original = document.getElementById("clickBtn");
@@ -126,7 +126,7 @@ function selfDestruct(countdown = 10) {
 
         if (remaining <= 0) {
             clearInterval(tick);
-            if (typeof showOutroLoss === "funciton") {
+            if (typeof showOutroLoss === "function") {
                 showOutroLoss();
             } else {
                 location.reload(); 

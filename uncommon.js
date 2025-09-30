@@ -1,4 +1,3 @@
-//EVENTS: musicStart, confettiExplosion, multiButtons, randomCursor, invertColor
 const MUSIC_TRACKS = [
     { src: "assets/music/song1.mp3", title: "RICKROLL"},
     { src: "assets/music/song2.mp3", title: "MikuMiku"},
@@ -8,11 +7,11 @@ const MUSIC_TRACKS = [
 ];
 
 const PNGS = [
-    { src: "assets/cursor1", title: "rock"},
-    { src: "assets/cursor2", title: "cheese"},
-    { src: "assets/cursor3", title: "amognus"},
-    { src: "assets/cursor4", title: "dorito"},
-    { src: "assets/cursor5", title: "sus"},
+    { src: "assets/cursor1.png", title: "rock"},
+    { src: "assets/cursor2.png", title: "cheese"},
+    { src: "assets/cursor3.png", title: "amognus"},
+    { src: "assets/cursor4.png", title: "dorito"},
+    { src: "assets/cursor5.png", title: "sus"},
 ];
 
 let currentAudio = null;
@@ -228,7 +227,7 @@ function multiButtons(total = 4) {
     }
 
     const exisitng = document.querySelectorAll('.btn').length;
-    const needed = window._multiButtons.targetTotal - existing;
+    const needed = window._multiButtons.targetTotal - exisitng;
     
     for (let i=0; i < needed; i++) {
         const decoy = createDecoyButton();
@@ -268,7 +267,7 @@ function invertColor() {
     } else {
         root.classList.add(ON);
         root.style.filter = "invert(1) hue-rotate(180deg)";
-        showRarirty("uncommon", "Invert Colors: ON");
+        showRarity("uncommon", "Invert Colors: ON");
     }
 }
 

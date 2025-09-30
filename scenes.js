@@ -53,7 +53,10 @@
 
         await waitForEnter();
 
-        try { sfxMail.currentTime = 0; sfxMail.onplay().catch(() =>{}); } catch {}
+        try {
+            sfxMail.currentTime = 0;
+            await sfxMail.onplay();
+        } catch {}
 
         await waitForEnter();
 
@@ -116,6 +119,8 @@
     sceneTable.style.display = "grid";
 
     await showTableWithLetter(
+        "Great job on pressing that button, hope it didn't cause any problems.\n\nHere's your money:",
+        "Collect",
         () => {
             window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank");
             restartToIntro();

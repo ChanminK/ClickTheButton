@@ -28,16 +28,17 @@ function ytBackground() {
 }
 
 function screenSaver(strength = 0.35, blend = 'multiply') {
-    document.querySelectorAll('.screensaver-overlay').forEach(el=>el.remove());
+    document.querySelectorAll('.screensaver-overlay').forEach(el => el.remove());
     
-    const color = CSS_COLORS[(Math.random() * CSS_COLORS)];
+    const color = CSS_COLORS[(Math.random() * CSS_COLORS.length | 0)];
+    const overlay = document.createElement("div");
     overlay.className = 'screensaver-overlay';
-    overlay.style.ytBackground = color;
-    overlay.style.setProperty('--s-alpha', strength);
+    overlay.style.backgroundColor = color;
+    overlay.style.setProperty('--ss-alpha', String(strength));
     overlay.style.setProperty('--ss-blend', blend);
 
     document.body.appendChild(overlay);
-    showRarity("rare",   `Screensaver (${color})`);
+    showRarity("rare", `Screensaver (${color})`);
 }
 
 function clearScreenSaver() {
@@ -47,9 +48,8 @@ function clearScreenSaver() {
 function flipScreen(duration = 60000) {
     const root = document.documentElement;
 
-    root.style.tranistion = "transform 0.6s ease";
+    root.style.transition = "transform 0.6s ease";
     root.style.transform = "rotate(180deg)";
-
     showRarity("rare", "Flip Screen");
 
     setTimeout(() => {
@@ -85,7 +85,6 @@ function inverse(duration = 10000) {
 
     const forward = (type) => (e) => {
         const { x, y } = getInv(e);
-
         const target = document.elementFromPoint(x, y);
         if(!target) return;
 
@@ -95,11 +94,11 @@ function inverse(duration = 10000) {
         const evt = new MouseEvent(type, {
             bubbles: true,
             cancelable: true,
-            clinetX: x,
+            clientX: x,
             clientY: y,
             screenX: x,
-            ScreenY: y,
-            button: e.buttion,
+            screenY: y,
+            button: e.button,
             buttons: e.buttons,
             ctrlKey: e.ctrlKey,
             shiftKey: e.shiftKey,
@@ -110,16 +109,19 @@ function inverse(duration = 10000) {
         target.dispatchEvent(evt);
     };
 
-    window.addEventListener("movemove", onMove, true);
-    window.addEventListener("mousedown", forward("mousedown"), true);
-    window.addEventListener("mouseup", forward("mouseup"), true);
-    window.addEventListener("click", forward("click"), true);
+    window.addEventListener("mousemove", onMove, true);
+    const fDown = forward("mousedown");
+    const fUp = forward("mouseup");
+    const fClick = forward("click");
+    window.addEventListener("mousedown", fDown, true);
+    window.addEventListener("mouseup", fUp, true);
+    window.addEventListener("click", fClick, true);
 
     const cleanup = () => {
-        window.addEventListener("mousemove", onMove, true);
-        window.addEventListener("mousedown", forward("mousedown"), true);
-        window.addEventListener("mouseup", forward("mouseup"), true);
-        window.addEventListener("click", forward("click"), true);
+        window.removeEventListener("mousemove", onMove, true);
+        window.removeEventListener("mousedown", fDown, true);
+        window.removeEventListener("mouseup", fUp, true);
+        window.removeEventListener("click", fClick, true);
         document.body.style.cursor = prevCursor || "auto";
         fake.remove();
         _inverseActive = false;

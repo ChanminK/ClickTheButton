@@ -274,7 +274,7 @@ body {
         inset: 0;
         z-index: 1100;
         pointer-events: none;
-        mix-blend-mode: var(--ss-blen, multiply);
+        mix-blend-mode: var(--ss-blend, multiply);
         opacity: var(--ss-alpha, 0.35);
         transition: opacity .25s ease;
     }
@@ -371,8 +371,9 @@ body {
     .table-bg {
         position: absolute;
         inset: 0;
-        background: #222 url("assets/table_bg.jpg") center / cover-no-repeat;
+        background: #222 url("assets/table_bg.jpg") center / cover no-repeat;
     }
+    
 
     .letter-hotspot {
         position: absolute;
@@ -380,7 +381,7 @@ body {
         top: 48%;
         width: 300px;
         height: 200px;
-        transform: tranlate(-50%, -50%);
+        transform: translate(-50%, -50%);
         background: rgba(255, 255, 255, 0.06);
         border: 2px dashed rgba(255, 255, 255, 0.2);
         border-radius: 8px;
@@ -391,7 +392,7 @@ body {
         position: fixed;
         inset: 0;
         display: grid;
-        place-items: cetner;
+        place-items: center;
         background: rgba(0,0,0,0.5);
         z-index: 1950;
     }
