@@ -16,7 +16,8 @@ You're a chill guy, but you get a letter asking you to, well, click a button.
 See what happens!
 Maybe theres a special prize at the end...
 
-Kinda inspired by neal.fun and other similar sites
+Kinda inspired by neal.fun and other similar sites, just a fun little site where random events can happen when you click the button!
+(I may have made the rates a bit too low...)
 __________________________________________________________________________
 DEMO:
 ![Demo](assets/demovid.gif)
